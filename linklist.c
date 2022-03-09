@@ -36,6 +36,9 @@ void insert(char *word)
 struct node *find(char *str)
 {
     struct node *current = head;
+    if(current == NULL){
+        return NULL;
+    }
     while (strcasecmp(current->word, str))
     {
         if (current->next == NULL)
@@ -65,8 +68,9 @@ void printList()
 void branch(char *str)
 {
     int temp;
+    find(str);
     struct node *foundLink = find(str);
-    if (foundLink != NULL)
+    if (find(str) != NULL)
     {
         struct node *current = head;
         while (strcasecmp(current->word, str))
@@ -81,11 +85,11 @@ void branch(char *str)
                 current->count = temp + 1;
             }
         }
-        // printf("%s,", foundLink->word);
-        // temp = foundLink->count;
-        // current = foundLink;
-        // current->count = temp + 1;
-        // printf("%d\n", foundLink->count);
+        printf("%s,", foundLink->word);
+        temp = foundLink->count;
+        current = foundLink;
+        current->count = temp + 1;
+        printf("%d\n", foundLink->count);
     }
     else
     {
@@ -95,8 +99,15 @@ void branch(char *str)
 }
 int main()
 {
-    char *hello = "hello";
-    branch(hello);
+    char* hello = "hello";
+    char* hello1 = "hello1";
+
+    insert(hello);
+    find(hello);
+    char* hello21 = "hello1";
+
+    branch(hello21);
+    branch(hello21);
 
     // insert("good bye");
     printList();
